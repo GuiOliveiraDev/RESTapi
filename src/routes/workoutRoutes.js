@@ -1,4 +1,6 @@
-import express from "express";
+import express, { json } from "express";
+import workoutController from "../controllers/workoutController.js";
+import workouts from "../database/workout.js";
 
 const router = express.Router();
 
@@ -6,28 +8,18 @@ const router = express.Router();
 router
 
     //CREATE
-    .post('/', (req, res) => {
-        res.send('Create a new workout');
-    })
+    .post('/', workoutController.createNewWorkout)
 
     //READ
-    .get('/', (req, res) => {
-        res.send('Get all workouts');
-    })
+    .get('/', workoutController.getAllWorkouts)
 
     //READ
-    .get('/:workingId', (req, res) => {
-        res.send('Get an existing workout');
-    })
+    .get('/:workingId', workoutController.getOneWorkout)
 
     //UPDATE
-    .patch('/:workoutId', (req, res) => {
-        res.send('Update an existing workout');
-    })
+    .patch('/:workoutId', workoutController.updateOneWorkout)
 
     //DELETE
-    .delete('/:workingId', (req, res) => {
-        res.send('Delete an existing workout');
-    });
+    .delete('/:workingId', workoutController.deleteOneWorkout);
 
 export default router;
