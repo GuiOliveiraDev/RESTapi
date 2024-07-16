@@ -10,4 +10,5 @@ app.listen(PORT, () => {
     console.log(`API is listening on port ${PORT}`);
 })
 
+app.get('/', (req, res) => res.send('hello world'));
 app.use('/workouts', workoutRouter);

@@ -41,16 +41,25 @@ class workoutServices {
         return allWorkouts;
     };
 
-    static getOneWorkout = () => {
-        return;
+    static getOneWorkout = (id) => {
+        const oneWorkout = workOuts.getOneWorkout(id)
+
+        return oneWorkout;
     };
 
-    static updateOneWorkout = () => {
-        return;
+    static updateOneWorkout = (workoutId, body) => {
+
+        const updateOneWorkout = workOuts.updateOneWorkout(workoutId, body)
+        return updateOneWorkout;
     };
 
-    static deleteOneWorkout = () => {
-        return;
+    static deleteOneWorkout = (req) => {
+
+        const {params} = req;
+
+        const deleteOneWorkout = workOuts.deleteOneWorkout(params)
+
+        return deleteOneWorkout;
     };
 };
 

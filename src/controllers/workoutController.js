@@ -4,50 +4,49 @@ import workoutServices from "../services/workoutService.js";
 class workoutController {
     
     static createNewWorkout = (req, res) => {
-        
-        const {body} = req;
 
-        if (
-            !body. ||
-            !body.mode ||
-            !body.equipment ||
-            !body.exercises ||
-            !body.trainerTips
-        ) {
-            return "ok";
-        }
+        const createdWorkout = workoutServices.createNewWorkout(req);
 
-        const createdWorkout = workoutServices.createNewWorkout;
-
-        res.send({status: "ok", data: createdWorkout});
+        return res.status(200).send({message: "status: ok", data: createdWorkout});
     };
 
     static getAllWorkouts = (req, res) => {
 
         const allWorkouts = workoutServices.getAllWorkouts();
 
-        res.status(200).send(allWorkouts());
+        return res.status(200).send(allWorkouts());
     };
     
     static getOneWorkout = (req, res) => {
+        const workoutId = req.params.id;
 
-        const workout = workoutServices.getOneWorkout;
+          const workout = workoutServices.getOneWorkout(workoutId);
 
-        res.send('Get an existing workout');
+          if (workout === -1) {
+            return res.status(404).send({message: "Workout not found"})
+          }
+          return res.send({ message: "ok", data: workout});
     };
     
     static updateOneWorkout = (req, res) => {
 
-        const updatedWorkout = workoutServices.updateOneWorkout;
+        const workoutId = req.params.id;
+        const body = req.body;
 
-        res.send('Update an existing workout');
+        const updatedWorkout = workoutServices.updateOneWorkout(workoutId, body);
+
+        return res.send({data: updatedWorkout});
     };
     
     static deleteOneWorkout = (req, res) => {
 
-        const deletedWorkout = workoutServices.deleteOneWorkout;
+        const deletedWorkout = workoutServices.deleteOneWorkout(req);
 
-        res.send('Delete an existing workout');
+        if (deletedWorkout === -1) {
+            return res.status(404).send({message: "Workout not found"});
+        }
+
+        return res.send({ deletedData: deletedWorkout});
     };
 }
 

@@ -14,12 +14,12 @@ router
     .get('/', workoutController.getAllWorkouts)
 
     //READ
-    .get('/:workingId', workoutController.getOneWorkout)
+    .get('/:id', workoutController.getOneWorkout)
 
     //UPDATE
-    .patch('/:workoutId', workoutController.updateOneWorkout)
+    .patch('/:id', workoutController.updateOneWorkout)
 
     //DELETE
-    .delete('/:workingId', workoutController.deleteOneWorkout);
+    .delete('/:id', workoutController.deleteOneWorkout);
 
 export default router;
